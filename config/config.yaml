@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  allowOrigins:
+    - "*"
+  bodyLimit: "10M" #MiB
+  timeOut: 30 #sec
+
+oauth2:
+  playerRedirectUrl: "http://localhost:8080/v1/oauth2/google/player/login/callback"
+  adminRedirectUrl: "http://localhost:8080/v1/oauth2/google/admin/login/callback"
+  clientId: "xxxxx.apps.googleusercontent.com"
+  clientSecret: "xxxxx"
+  endpoints:
+    authUrl: "https://accounts.google.com/o/oauth2/auth?access_type=offline&approval_prompt=force"
+    tokenUrl: "https://oauth2.googleapis.com/token"
+    deviceAuthUrl: "https://oauth2.googleapis.com/device/code"
+  scopes:
+    - "https://www.googleapis.com/auth/userinfo.email"
+    - "https://www.googleapis.com/auth/userinfo.profile"
+  userInfoUrl: "https://www.googleapis.com/oauth2/v2/userinfo"
+  revokeUrl: "https://accounts.google.com/o/oauth2/revoke"
+
+state:
+  secret: "xxxxx"
+  expiresAt: 120 # sec
+  issuer: "gameshop"
+
+database:
+  host: localhost
+  port: 5432
+  user: postgres
+  password: 123456
+  dbname: gameshop
+  sslmode: disable
+  schema: public
