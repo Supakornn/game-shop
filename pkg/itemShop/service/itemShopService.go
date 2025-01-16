@@ -1,3 +1,9 @@
 package service
 
-type ItemShopService interface{}
+import (
+	_itemShopModel "github.com/supakorn/game-shop/pkg/itemShop/model"
+)
+
+type ItemShopService interface {
+	Listing() ([]*_itemShopModel.Item, error)
+}
