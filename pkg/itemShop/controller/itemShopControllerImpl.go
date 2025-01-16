@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"github.com/supakorn/game-shop/pkg/custom"
 	_itemShopService "github.com/supakorn/game-shop/pkg/itemShop/service"
 )
 
@@ -18,7 +19,7 @@ func NewItemShopController(itemShopService _itemShopService.ItemShopService) Ite
 func (c *itemShopControllerImpl) Listing(pctx echo.Context) error {
 	itemModelList, err := c.itemShopService.Listing()
 	if err != nil {
-		return pctx.String(http.StatusInternalServerError, err.Error())
+		return custom.Error(pctx, http.StatusInternalServerError, err.Error())
 	}
 
 	return pctx.JSON(http.StatusOK, itemModelList)
