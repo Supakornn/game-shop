@@ -5,6 +5,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 	"github.com/supakorn/game-shop/pkg/custom"
+	_itemShopModel "github.com/supakorn/game-shop/pkg/itemShop/model"
 	_itemShopService "github.com/supakorn/game-shop/pkg/itemShop/service"
 )
 
@@ -17,7 +18,15 @@ func NewItemShopController(itemShopService _itemShopService.ItemShopService) Ite
 }
 
 func (c *itemShopControllerImpl) Listing(pctx echo.Context) error {
-	itemModelList, err := c.itemShopService.Listing()
+	itemFilter := new(_itemShopModel.ItemFilter)
+
+	customEchoRequest := custom.NewCustomEchoRequest(pctx)
+
+	if err := customEchoRequest.Bind(itemFilter); err != nil {
+		return custom.Error(pctx, http.StatusBadRequest, err.Error())
+	}
+
+	itemModelList, err := c.itemShopService.Listing(itemFilter)
 	if err != nil {
 		return custom.Error(pctx, http.StatusInternalServerError, err.Error())
 	}

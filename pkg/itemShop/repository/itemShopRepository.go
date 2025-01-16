@@ -1,7 +1,10 @@
 package repository
 
-import "github.com/supakorn/game-shop/entities"
+import (
+	"github.com/supakorn/game-shop/entities"
+	_itemShopModel "github.com/supakorn/game-shop/pkg/itemShop/model"
+)
 
 type ItemShopRepository interface {
-	Listing() ([]*entities.Item, error)
+	Listing(itemFilter *_itemShopModel.ItemFilter) ([]*entities.Item, error)
 }
