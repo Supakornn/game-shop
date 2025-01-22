@@ -2,9 +2,9 @@ package repository
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/supakorn/game-shop/entities"
-	_itemShopException "github.com/supakorn/game-shop/pkg/itemShop/exception"
-	_itemShopModel "github.com/supakorn/game-shop/pkg/itemShop/model"
+	"github.com/supakornn/game-shop/entities"
+	_itemShopException "github.com/supakornn/game-shop/pkg/itemShop/exception"
+	_itemShopModel "github.com/supakornn/game-shop/pkg/itemShop/model"
 	"gorm.io/gorm"
 )
 

@@ -5,7 +5,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/supakorn/game-shop/config"
+	"github.com/supakornn/game-shop/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

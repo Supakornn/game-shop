@@ -1,9 +1,9 @@
 package server
 
 import (
-	_itemShopController "github.com/supakorn/game-shop/pkg/itemShop/controller"
-	_itemShopRepository "github.com/supakorn/game-shop/pkg/itemShop/repository"
-	_itemShopService "github.com/supakorn/game-shop/pkg/itemShop/service"
+	_itemShopController "github.com/supakornn/game-shop/pkg/itemShop/controller"
+	_itemShopRepository "github.com/supakornn/game-shop/pkg/itemShop/repository"
+	_itemShopService "github.com/supakornn/game-shop/pkg/itemShop/service"
 )
 
 func (s *echoServer) initItemShopRouter() {

@@ -1,9 +1,9 @@
 package service
 
 import (
-	"github.com/supakorn/game-shop/entities"
-	_itemShopModel "github.com/supakorn/game-shop/pkg/itemShop/model"
-	_itemShopRepository "github.com/supakorn/game-shop/pkg/itemShop/repository"
+	"github.com/supakornn/game-shop/entities"
+	_itemShopModel "github.com/supakornn/game-shop/pkg/itemShop/model"
+	_itemShopRepository "github.com/supakornn/game-shop/pkg/itemShop/repository"
 )
 
 type itemShopServiceImpl struct {

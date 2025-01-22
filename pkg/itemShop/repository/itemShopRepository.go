@@ -1,8 +1,8 @@
 package repository
 
 import (
-	"github.com/supakorn/game-shop/entities"
-	_itemShopModel "github.com/supakorn/game-shop/pkg/itemShop/model"
+	"github.com/supakornn/game-shop/entities"
+	_itemShopModel "github.com/supakornn/game-shop/pkg/itemShop/model"
 )
 
 type ItemShopRepository interface {

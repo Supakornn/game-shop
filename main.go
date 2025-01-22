@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/supakorn/game-shop/config"
-	"github.com/supakorn/game-shop/databases"
-	"github.com/supakorn/game-shop/server"
+	"github.com/supakornn/game-shop/config"
+	"github.com/supakornn/game-shop/databases"
+	"github.com/supakornn/game-shop/server"
 )
 
 func main() {

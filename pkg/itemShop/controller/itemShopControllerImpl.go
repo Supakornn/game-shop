@@ -4,9 +4,9 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
-	"github.com/supakorn/game-shop/pkg/custom"
-	_itemShopModel "github.com/supakorn/game-shop/pkg/itemShop/model"
-	_itemShopService "github.com/supakorn/game-shop/pkg/itemShop/service"
+	"github.com/supakornn/game-shop/pkg/custom"
+	_itemShopModel "github.com/supakornn/game-shop/pkg/itemShop/model"
+	_itemShopService "github.com/supakornn/game-shop/pkg/itemShop/service"
 )
 
 type itemShopControllerImpl struct {

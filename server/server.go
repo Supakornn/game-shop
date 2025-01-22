@@ -13,7 +13,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
-	"github.com/supakorn/game-shop/config"
+	"github.com/supakornn/game-shop/config"
 	"gorm.io/gorm"
 )
 
@@ -57,6 +57,7 @@ func (s *echoServer) Start() {
 	s.app.GET("/v1/health", s.healthCheck)
 
 	s.initItemShopRouter()
+	s.initItemManagingRouter()
 
 	quitCh := make(chan os.Signal, 1)
 	signal.Notify(quitCh, syscall.SIGINT, syscall.SIGTERM)
