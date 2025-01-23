@@ -13,6 +13,5 @@ func (s *echoServer) initItemManagingRouter() {
 	itemManagingService := _itemManagingService.NewItemManagingServiceImpl(itemManagingRepository)
 	itemManagingController := _itemManagingController.NewItemManagingControllerImpl(itemManagingService)
 
-	_ = itemManagingController
-	_ = router
+	router.POST("/", itemManagingController.Creating)
 }
