@@ -14,12 +14,12 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
 	"github.com/supakornn/game-shop/config"
-	"gorm.io/gorm"
+	"github.com/supakornn/game-shop/databases"
 )
 
 type echoServer struct {
 	app  *echo.Echo
-	db   *gorm.DB
+	db   databases.Database
 	conf *config.Config
 }
 
@@ -28,7 +28,7 @@ var (
 	server *echoServer
 )
 
-func NewEchoServer(conf *config.Config, db *gorm.DB) *echoServer {
+func NewEchoServer(conf *config.Config, db databases.Database) *echoServer {
 	echoApp := echo.New()
 	echoApp.Logger.SetLevel(log.DEBUG)
 
