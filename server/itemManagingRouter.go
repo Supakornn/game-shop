@@ -17,4 +17,5 @@ func (s *echoServer) initItemManagingRouter() {
 
 	router.POST("/", itemManagingController.Creating)
 	router.PATCH("/:itemID", itemManagingController.Editing)
+	router.DELETE("/:itemID", itemManagingController.Archiving)
 }
