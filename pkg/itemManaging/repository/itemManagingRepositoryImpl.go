@@ -4,6 +4,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/supakornn/game-shop/entities"
 	_itemManagingException "github.com/supakornn/game-shop/pkg/itemManaging/exception"
+	_itemManagingModel "github.com/supakornn/game-shop/pkg/itemManaging/model"
 	"gorm.io/gorm"
 )
 
@@ -24,4 +25,13 @@ func (r *itemManagingRepositoryImpl) Creating(itemEntity *entities.Item) (*entit
 	}
 
 	return item, nil
+}
+
+func (r *itemManagingRepositoryImpl) Editing(itemID uint64, itemEditingReq *_itemManagingModel.ItemEditingReq) error {
+	if err := r.db.Model(&entities.Item{}).Where("id = ?", itemID).Updates(itemEditingReq).Error; err != nil {
+		r.logger.Errorf("editing item failed: %v", err.Error())
+		return &_itemManagingException.ItemEditing{}
+	}
+
+	return nil
 }
