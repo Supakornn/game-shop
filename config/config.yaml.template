@@ -2,14 +2,14 @@ server:
   port: 8080
   allowOrigins:
     - "*"
-  bodyLimit: "10M" #MiB
-  timeOut: 30 #sec
+  bodyLimit: "10M"
+  timeOut: 30
 
 oauth2:
   playerRedirectUrl: "http://localhost:8080/v1/oauth2/google/player/login/callback"
   adminRedirectUrl: "http://localhost:8080/v1/oauth2/google/admin/login/callback"
-  clientId: "xxxxx.apps.googleusercontent.com"
-  clientSecret: "xxxxx"
+  clientId: "YOUR_CLIENT_ID"
+  clientSecret: "YOUR_CLIENT_SECRET"
   endpoints:
     authUrl: "https://accounts.google.com/o/oauth2/auth?access_type=offline&approval_prompt=force"
     tokenUrl: "https://oauth2.googleapis.com/token"
@@ -23,8 +23,8 @@ oauth2:
 database:
   host: localhost
   port: 5432
-  user: postgres
-  password: 123456
+  user: your_username
+  password: your_password
   dbname: gameshop
   sslmode: disable
   schema: public
