@@ -20,11 +20,6 @@ oauth2:
   userInfoUrl: "https://www.googleapis.com/oauth2/v2/userinfo"
   revokeUrl: "https://accounts.google.com/o/oauth2/revoke"
 
-state:
-  secret: "xxxxx"
-  expiresAt: 120 # sec
-  issuer: "gameshop"
-
 database:
   host: localhost
   port: 5432
