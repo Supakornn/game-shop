@@ -10,8 +10,8 @@ import (
 func (s *echoServer) initOAuth2Router() {
 	router := s.app.Group("/v1/oauth2/google")
 
-	playerRepository := _playerRepository.NewPlayerRepository(s.db, s.app.Logger)
-	adminRepository := _adminRepository.NewAdminRepository(s.db, s.app.Logger)
+	playerRepository := _playerRepository.NewPlayerRepositoryImpl(s.db, s.app.Logger)
+	adminRepository := _adminRepository.NewAdminRepositoryImpl(s.db, s.app.Logger)
 
 	oauth2Service := _oauth2Service.NewGoogleOAuth2Service(playerRepository, adminRepository)
 	oauth2Controller := _oauth2Controller.NewGoogleOAuth2Controller(oauth2Service, s.conf.Oauth2, s.app.Logger)

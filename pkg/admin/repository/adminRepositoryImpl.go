@@ -12,7 +12,7 @@ type adminRepositoryImpl struct {
 	logger echo.Logger
 }
 
-func NewAdminRepository(db databases.Database, logger echo.Logger) AdminRepository {
+func NewAdminRepositoryImpl(db databases.Database, logger echo.Logger) AdminRepository {
 	return &adminRepositoryImpl{db: db, logger: logger}
 }
 

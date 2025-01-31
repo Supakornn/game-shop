@@ -12,7 +12,7 @@ type playerRepositoryImpl struct {
 	logger echo.Logger
 }
 
-func NewPlayerRepository(db databases.Database, logger echo.Logger) PlayerRepository {
+func NewPlayerRepositoryImpl(db databases.Database, logger echo.Logger) PlayerRepository {
 	return &playerRepositoryImpl{db: db, logger: logger}
 }
 

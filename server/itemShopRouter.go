@@ -11,7 +11,7 @@ func (s *echoServer) initItemShopRouter() {
 
 	itemShopRepository := _itemShopRepository.NewItemShopRepositoryImpl(s.db, s.app.Logger)
 	itemShopService := _itemShopService.NewItemShopServiceImpl(itemShopRepository)
-	itemShopController := _itemShopController.NewItemShopController(itemShopService)
+	itemShopController := _itemShopController.NewItemShopControllerImpl(itemShopService)
 
 	router.GET("/listing", itemShopController.Listing)
 }

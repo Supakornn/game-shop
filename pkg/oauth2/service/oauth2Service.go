@@ -8,6 +8,6 @@ import (
 type Oauth2Service interface {
 	PlayerAccountCreating(playerCreatingReq *_playerModel.PlayerCreatingReq) error
 	AdminAccountCreating(adminCreatingReq *_adminModel.AdminCreatingReq) error
-	isPlayerExist(playerID string) bool
-	isAdminExist(adminID string) bool
+	IsPlayerExist(playerID string) bool
+	IsAdminExist(adminID string) bool
 }
