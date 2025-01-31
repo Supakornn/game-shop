@@ -12,7 +12,7 @@ import (
 type (
 	Config struct {
 		Server   *Server   `mapstructure:"server" validate:"required"`
-		Oauth2   *Oauth2   `mapstructure:"oauth2" validate:"required"`
+		Oauth2   *OAuth2   `mapstructure:"oauth2" validate:"required"`
 		Database *Database `mapstructure:"database" validate:"required"`
 	}
 
@@ -23,7 +23,7 @@ type (
 		TimeOut      time.Duration `mapstructure:"timeOut" validate:"required"`
 	}
 
-	Oauth2 struct {
+	OAuth2 struct {
 		PlayerRedirectUrl string   `mapstructure:"playerRedirectUrl" validate:"required"`
 		AdminRedirectUrl  string   `mapstructure:"adminRedirectUrl" validate:"required"`
 		ClientId          string   `mapstructure:"clientId" validate:"required"`

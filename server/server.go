@@ -58,6 +58,7 @@ func (s *echoServer) Start() {
 
 	s.initItemShopRouter()
 	s.initItemManagingRouter()
+	s.initOAuth2Router()
 
 	quitCh := make(chan os.Signal, 1)
 	signal.Notify(quitCh, syscall.SIGINT, syscall.SIGTERM)
