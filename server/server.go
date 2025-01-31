@@ -15,6 +15,11 @@ import (
 	"github.com/labstack/gommon/log"
 	"github.com/supakornn/game-shop/config"
 	"github.com/supakornn/game-shop/databases"
+
+	_adminRepository "github.com/supakornn/game-shop/pkg/admin/repository"
+	_oauth2Controller "github.com/supakornn/game-shop/pkg/oauth2/controller"
+	_oauth2Service "github.com/supakornn/game-shop/pkg/oauth2/service"
+	_playerRepository "github.com/supakornn/game-shop/pkg/player/repository"
 )
 
 type echoServer struct {
@@ -54,10 +59,12 @@ func (s *echoServer) Start() {
 	s.app.Use(timeOutMiddleware)
 	s.app.Use(bodyLimitMiddleware)
 
+	authorizingMiddleware := s.getAuthorizingMiddleware()
+
 	s.app.GET("/v1/health", s.healthCheck)
 
 	s.initItemShopRouter()
-	s.initItemManagingRouter()
+	s.initItemManagingRouter(authorizingMiddleware)
 	s.initOAuth2Router()
 
 	quitCh := make(chan os.Signal, 1)
@@ -109,4 +116,18 @@ func getCORSMiddleware(allowOrigins []string) echo.MiddlewareFunc {
 
 func getBodyLimitMiddleware(bodyLimit string) echo.MiddlewareFunc {
 	return middleware.BodyLimit(bodyLimit)
+}
+
+func (s *echoServer) getAuthorizingMiddleware() *authorizingMiddleware {
+	playerRepository := _playerRepository.NewPlayerRepositoryImpl(s.db, s.app.Logger)
+	adminRepository := _adminRepository.NewAdminRepositoryImpl(s.db, s.app.Logger)
+
+	oauth2Service := _oauth2Service.NewGoogleOAuth2Service(playerRepository, adminRepository)
+	oauth2Controller := _oauth2Controller.NewGoogleOAuth2Controller(oauth2Service, s.conf.Oauth2, s.app.Logger)
+
+	return &authorizingMiddleware{
+		oauth2Controller: oauth2Controller,
+		oauth2Conf:       s.conf.Oauth2,
+		logger:           s.app.Logger,
+	}
 }
