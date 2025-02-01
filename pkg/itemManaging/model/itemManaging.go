@@ -3,10 +3,10 @@ package model
 type (
 	ItemCreatingReq struct {
 		AdminID     string
-		Name        string  `json:"name" validate:"required,max=64"`
-		Description string  `json:"description" valdiate:"required,max=128"`
-		Picture     string  `json:"picture" validate:"required"`
-		Price       float64 `json:"price" validate:"required"`
+		Name        string `json:"name" validate:"required,max=64"`
+		Description string `json:"description" valdiate:"required,max=128"`
+		Picture     string `json:"picture" validate:"required"`
+		Price       uint   `json:"price" validate:"required"`
 	}
 
 	ItemEditingReq struct {
