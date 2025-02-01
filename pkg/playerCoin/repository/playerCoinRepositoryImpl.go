@@ -6,6 +6,7 @@ import (
 	"github.com/supakornn/game-shop/entities"
 	_playerCoinException "github.com/supakornn/game-shop/pkg/playerCoin/exception"
 	_playerCoinModel "github.com/supakornn/game-shop/pkg/playerCoin/model"
+	"gorm.io/gorm"
 )
 
 type playerCoinRepositoryImpl struct {
@@ -20,10 +21,15 @@ func NewPlayerCoinRepositoryImpl(db databases.Database, logger echo.Logger) Play
 	}
 }
 
-func (r *playerCoinRepositoryImpl) CoinAdding(playerCoinEntity *entities.PlayerCoin) (*entities.PlayerCoin, error) {
+func (r *playerCoinRepositoryImpl) CoinAdding(tx *gorm.DB, playerCoinEntity *entities.PlayerCoin) (*entities.PlayerCoin, error) {
+	conn := r.db.Connect()
+	if tx != nil {
+		conn = tx
+	}
+
 	playerCoin := new(entities.PlayerCoin)
 
-	if err := r.db.Connect().Create(playerCoinEntity).Scan(playerCoin).Error; err != nil {
+	if err := conn.Create(playerCoinEntity).Scan(playerCoin).Error; err != nil {
 		r.logger.Errorf("adding coin failed: %s", err.Error())
 		return nil, &_playerCoinException.CoinAdding{}
 	}

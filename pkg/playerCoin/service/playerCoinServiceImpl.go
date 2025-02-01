@@ -22,7 +22,7 @@ func (s *playerCoinServiceImpl) CoinAdding(coinAddingReq *_playerCoinModel.CoinA
 		Amount:   coinAddingReq.Amount,
 	}
 
-	playerCoinResult, err := s.playerCoinRepository.CoinAdding(playerCoinEntity)
+	playerCoinResult, err := s.playerCoinRepository.CoinAdding(nil, playerCoinEntity)
 	if err != nil {
 		return nil, err
 	}
@@ -38,6 +38,5 @@ func (s *playerCoinServiceImpl) Showing(playerID string) *_playerCoinModel.Playe
 			Coin:     0,
 		}
 	}
-
 	return playerCoinShowing
 }
