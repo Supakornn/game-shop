@@ -8,6 +8,7 @@ import (
 	"github.com/supakornn/game-shop/pkg/custom"
 	_itemManagingModel "github.com/supakornn/game-shop/pkg/itemManaging/model"
 	_itemManagingService "github.com/supakornn/game-shop/pkg/itemManaging/service"
+	"github.com/supakornn/game-shop/pkg/validation"
 )
 
 type itemManagingControllerImpl struct {
@@ -19,6 +20,11 @@ func NewItemManagingControllerImpl(itemManagingService _itemManagingService.Item
 }
 
 func (c *itemManagingControllerImpl) Creating(pctx echo.Context) error {
+	adminID, err := validation.AdminIDGetting(pctx)
+	if err != nil {
+		return custom.Error(pctx, http.StatusBadRequest, err)
+	}
+
 	itemCreaingReq := new(_itemManagingModel.ItemCreatingReq)
 
 	customEchoRequest := custom.NewCustomEchoRequest(pctx)
@@ -26,6 +32,8 @@ func (c *itemManagingControllerImpl) Creating(pctx echo.Context) error {
 	if err := customEchoRequest.Bind(itemCreaingReq); err != nil {
 		return custom.Error(pctx, http.StatusBadRequest, err)
 	}
+
+	itemCreaingReq.AdminID = adminID
 
 	item, err := c.itemManagingService.Creating(itemCreaingReq)
 	if err != nil {
