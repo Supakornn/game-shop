@@ -41,3 +41,14 @@ func (c *playerCoinControllerImpl) CoinAdding(pctx echo.Context) error {
 
 	return pctx.JSON(http.StatusCreated, playerCoin)
 }
+
+func (c *playerCoinControllerImpl) Showing(pctx echo.Context) error {
+	playerID, err := validation.PlayerIDGetting(pctx)
+	if err != nil {
+		return custom.Error(pctx, http.StatusBadRequest, err)
+	}
+
+	playerCoinShowing := c.playerCoinService.Showing(playerID)
+
+	return pctx.JSON(http.StatusOK, playerCoinShowing)
+}
