@@ -12,6 +12,6 @@ type (
 
 	ItemQuantityCounting struct {
 		ItemID   uint64
-		Quantity int
+		Quantity uint
 	}
 )
