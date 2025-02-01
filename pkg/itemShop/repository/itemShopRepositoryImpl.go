@@ -6,6 +6,7 @@ import (
 	"github.com/supakornn/game-shop/entities"
 	_itemShopException "github.com/supakornn/game-shop/pkg/itemShop/exception"
 	_itemShopModel "github.com/supakornn/game-shop/pkg/itemShop/model"
+	"gorm.io/gorm"
 )
 
 type itemShopRepositoryImpl struct {
@@ -80,4 +81,32 @@ func (r *itemShopRepositoryImpl) FindByIDList(itemIDs []uint64) ([]*entities.Ite
 	}
 
 	return items, nil
+}
+
+func (r *itemShopRepositoryImpl) PurchaseHistory(tx *gorm.DB, purchasingEntity *entities.PurchaseHistory) (*entities.PurchaseHistory, error) {
+	conn := r.db.Connect()
+	if tx != nil {
+		conn = tx
+	}
+
+	addedPurchasing := new(entities.PurchaseHistory)
+
+	if err := conn.Create(purchasingEntity).Scan(addedPurchasing).Error; err != nil {
+		r.logger.Errorf("Failed to purchase history: %s", err.Error())
+		return nil, &_itemShopException.HistoryOfPurchase{}
+	}
+
+	return addedPurchasing, nil
+}
+
+func (r *itemShopRepositoryImpl) TransactionBegin() *gorm.DB {
+	return r.db.Connect().Begin()
+}
+
+func (r *itemShopRepositoryImpl) TransactionRollback(tx *gorm.DB) error {
+	return tx.Rollback().Error
+}
+
+func (r *itemShopRepositoryImpl) TransactionCommit(tx *gorm.DB) error {
+	return tx.Commit().Error
 }

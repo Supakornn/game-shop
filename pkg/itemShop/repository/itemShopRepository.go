@@ -7,6 +7,9 @@ import (
 )
 
 type ItemShopRepository interface {
+	TransactionBegin() *gorm.DB
+	TransactionRollback(tx *gorm.DB) error
+	TransactionCommit(tx *gorm.DB) error
 	Listing(itemFilter *_itemShopModel.ItemFilter) ([]*entities.Item, error)
 	Counting(itemFilter *_itemShopModel.ItemFilter) (int64, error)
 	FindByID(itemID uint64) (*entities.Item, error)
